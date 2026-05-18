@@ -1,181 +1,207 @@
-# FitCheck AI 🧥
-
-> **Brutally honest AI fashion feedback — powered by Groq + Llama 4 Vision**
-
-Upload a photo. Get scored. Dress better.
-
-FitCheck AI is a Next.js 14 app that analyzes your outfit using multimodal AI. It grades your look across 5 style categories, detects your aesthetic vibe, surfaces wardrobe gaps, and adapts its feedback based on context — dating app photo, job interview, or everyday style.
+# FitCheck AI — Gemini Edition Setup Guide
+### 100% Free to Run · No Credit Card Required
 
 ---
 
-## ✨ Features
+## What's Inside
 
-| Feature | Details |
+| Feature | Status |
 |---|---|
-| **AI Outfit Scoring** | 5 categories: Color Coordination, Fit & Silhouette, Style Coherence, Occasion Score, Vibe Score |
-| **3 Analysis Modes** | General · Dating · Professional |
-| **Vibe Detector** | Matches to 10 aesthetics (Old Money, Gorpcore, Y2K Revival, etc.) |
-| **Wardrobe Gap Analysis** | Identifies missing staples from your virtual wardrobe |
-| **Outfit Combos** | Generates 3 outfit combinations from your saved wardrobe items |
-| **Fit Check History** | Keeps a log of all your past analyses |
-| **Shareable Score Card** | Download your results as a PNG |
+| AI Outfit Scoring (5 categories) | ✅ Gemini 1.5 Flash Vision |
+| 3 Modes: Fit Check / Dating / Work | ✅ |
+| Vibe Detector (10 aesthetics) | ✅ |
+| Wardrobe Gap Analysis | ✅ |
+| Virtual Wardrobe + Outfit Combos | ✅ |
+| Shareable Score Card (PNG download) | ✅ |
+| Fit Check History | ✅ |
+| Face privacy blur on share card | ✅ |
 
 ---
 
-## 🛠 Tech Stack
+## Prerequisites — Install These First
 
-- **Framework**: [Next.js 14](https://nextjs.org) (App Router)
-- **Vision Model**: `meta-llama/llama-4-scout-17b-16e-instruct` via [Groq](https://groq.com)
-- **Wardrobe Model**: `llama-3.3-70b-versatile` via Groq
-- **Styling**: Vanilla CSS (monospace-forward dark UI)
-- **Deployment**: Vercel-ready
+### 1. Node.js (required)
+- Go to: **https://nodejs.org**
+- Download the **LTS** version (green button)
+- Install it (just click Next → Next → Finish)
+- To verify: open Terminal and type `node -v` — you should see something like `v20.x.x`
+
+### 2. A code editor (recommended)
+- Download **VS Code**: https://code.visualstudio.com (free)
+- Not required, but makes things easier
 
 ---
 
-## 🚀 Getting Started
+## Step 1 — Get Your FREE Gemini API Key
 
-### Prerequisites
+1. Go to: **https://aistudio.google.com/app/apikey**
+2. Sign in with your Google account
+3. Click **"Create API Key"**
+4. Copy the key — it looks like `AIzaSy...`
 
-- [Node.js 18+](https://nodejs.org) (LTS recommended)
-- A free [Groq API key](https://console.groq.com)
+> **Free tier limits:** 15 requests/minute, 1 million tokens/day.
+> For personal use, you'll never hit this limit.
 
-### 1. Clone the repo
+---
+
+## Step 2 — Create the Project
+
+Open **Terminal** (Mac/Linux) or **Command Prompt** (Windows):
 
 ```bash
-git clone https://github.com/your-username/fitcheck-ai.git
+# Create a brand new Next.js project
+npx create-next-app@14 fitcheck-ai --js --app --no-tailwind --no-eslint --no-src-dir --import-alias "@/*"
+
+# Move into the project folder
 cd fitcheck-ai
 ```
 
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Set up your API key
-
-Create a `.env.local` file in the project root:
-
-```bash
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-> Get your free key at [console.groq.com](https://console.groq.com). No credit card required.
-
-### 4. Run the dev server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) and upload a fit. 🎉
+When it asks questions, just press **Enter** for all of them (accept defaults).
 
 ---
 
-## 📁 Project Structure
+## Step 3 — Add Your Gemini API Key
+
+Inside the `fitcheck-ai` folder, create a file called `.env.local`:
+
+**Mac / Linux — run this in Terminal:**
+```bash
+echo 'GEMINI_API_KEY=YOUR_KEY_HERE' > .env.local
+```
+
+**Windows — run this in Command Prompt:**
+```
+echo GEMINI_API_KEY=YOUR_KEY_HERE > .env.local
+```
+
+**Or manually:** Open VS Code, create a new file called `.env.local` in the root of the project, and paste:
+```
+GEMINI_API_KEY=AIzaSyYOUR_ACTUAL_KEY_HERE
+```
+
+Replace `AIzaSyYOUR_ACTUAL_KEY_HERE` with the key you copied in Step 1.
+
+---
+
+## Step 4 — Copy the App Files
+
+Your project folder should look like this when done:
 
 ```
 fitcheck-ai/
+├── .env.local                        ← you created this in Step 3
+├── next.config.js                    ← replace with provided file
+├── package.json                      ← replace with provided file
 ├── app/
-│   ├── layout.js                 # Root layout + metadata
-│   ├── page.js                   # Entry point
-│   ├── globals.css               # Global styles
+│   ├── layout.js                     ← replace with provided file
+│   ├── page.js                       ← replace with provided file
+│   ├── globals.css                   ← keep as-is (or clear its contents)
 │   └── api/
 │       ├── analyze/
-│       │   └── route.js          # Image upload → Llama 4 Vision → scored JSON
+│       │   └── route.js              ← CREATE folder + file
 │       └── wardrobe/
-│           └── route.js          # Outfit combos + gap analysis
-├── components/
-│   └── FitCheckAI.jsx            # Full frontend UI
-├── .env.local                    # Your API key (never commit this)
-└── next.config.js
+│           └── route.js              ← CREATE folder + file
+└── components/
+    └── FitCheckAI.jsx                ← CREATE folder + file
 ```
+
+### How to do it:
+
+**1. Replace `app/layout.js`** — delete existing content, paste content from provided `layout.js`
+
+**2. Replace `app/page.js`** — delete existing content, paste content from provided `page.js`
+
+**3. Replace `package.json`** — delete existing content, paste content from provided `package.json`
+
+**4. Replace `next.config.js`** — delete existing content, paste content from provided `next.config.js`
+
+**5. Create the components folder and main file:**
+```bash
+mkdir components
+```
+Then create `components/FitCheckAI.jsx` and paste the full content of `FitCheckAI_Gemini.jsx`
+
+**6. Create the API routes:**
+```bash
+mkdir -p app/api/analyze
+mkdir -p app/api/wardrobe
+```
+- Create `app/api/analyze/route.js` — paste content from provided analyze `route.js`
+- Create `app/api/wardrobe/route.js` — paste content from provided wardrobe `route.js`
 
 ---
 
-## 🔌 API Routes
-
-### `POST /api/analyze`
-
-Accepts a base64-encoded image and returns a structured outfit analysis.
-
-**Request body:**
-```json
-{
-  "imageBase64": "...",
-  "imageType": "image/jpeg",
-  "mode": "general" | "dating" | "professional"
-}
-```
-
-**Response:**
-```json
-{
-  "success": true,
-  "data": {
-    "overallScore": 78,
-    "grades": {
-      "colorCoordination": 80,
-      "fitAndSilhouette": 75,
-      "styleCoherence": 82,
-      "occasionScore": 70,
-      "vibeScore": 85
-    },
-    "vibeMatch": "Quiet Luxury",
-    "verdict": "Understated but sharp",
-    "strengths": ["..."],
-    "improvements": ["..."],
-    "wardrobeGap": "...",
-    "lightingNote": null,
-    "modeSpecificInsight": "..."
-  }
-}
-```
-
-### `POST /api/wardrobe`
-
-Generates outfit combinations or a gap analysis from saved wardrobe items.
-
-**Request body:**
-```json
-{
-  "action": "combinations" | "gap-analysis",
-  "wardrobeItems": [{ "tag": "tops", "name": "White Oxford Shirt" }]
-}
-```
-
----
-
-## 🌐 Deploy to Vercel
+## Step 5 — Run It
 
 ```bash
+npm install
+npm run dev
+```
+
+Open your browser and go to:
+**http://localhost:3000**
+
+You should see the FitCheck AI app. Upload a photo and hit Analyze! 🎉
+
+---
+
+## Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| `command not found: node` | Install Node.js from nodejs.org and restart Terminal |
+| `npm install` fails | Try `npm install --legacy-peer-deps` |
+| `GEMINI_API_KEY not set` | Check `.env.local` exists in root folder, not inside `app/` |
+| Port 3000 busy | Run `npm run dev -- -p 3001`, open localhost:3001 |
+| Blank page | Press F12 in browser → Console tab → read the red error |
+| `Cannot find module '../components/FitCheckAI'` | File must be named exactly `FitCheckAI.jsx` (capital F, capital C, capital AI) |
+| API returns 400/500 | Check your Gemini key is correct in `.env.local` |
+| "Analysis failed" error | Image might be too large — try a photo under 4MB |
+
+---
+
+## Folder Structure Explained
+
+```
+app/api/analyze/route.js   → handles image uploads, calls Gemini Vision
+app/api/wardrobe/route.js  → handles outfit combos + gap analysis
+components/FitCheckAI.jsx  → the entire frontend UI (one file)
+.env.local                 → your secret API key (never share this)
+```
+
+The API key **never leaves your server**. The browser only talks to `/api/analyze`
+and `/api/wardrobe` — your key is invisible to anyone using the app.
+
+---
+
+## Deploy Free to Vercel (optional)
+
+When you're ready to share with friends:
+
+```bash
+# Install Vercel CLI
 npm install -g vercel
+
+# Deploy
 vercel
 ```
 
-When prompted, add your environment variable:
-- `GROQ_API_KEY` → your Groq key
+During setup, Vercel will ask for environment variables.
+Add `GEMINI_API_KEY` with your key value.
 
-Your app will be live at `https://fitcheck-ai-xxxx.vercel.app`.
-
----
-
-## 🔒 Privacy
-
-Your API key is stored server-side in `.env.local` and never exposed to the browser. The app communicates only with `/api/analyze` and `/api/wardrobe` — Groq is called exclusively from the server.
+Your app will be live at `https://fitcheck-ai-xxxx.vercel.app` for free.
 
 ---
 
-## 🗺 Roadmap
+## Upgrading to Anthropic Claude Later
 
-- [ ] Claude Vision upgrade for higher accuracy
-- [ ] User accounts + persistent wardrobe storage
-- [ ] Side-by-side outfit comparison
-- [ ] Color palette extraction
-- [ ] Shopping recommendations by score gap
+When you're ready to upgrade to Claude for better vision accuracy:
+
+1. Get an Anthropic API key from **https://console.anthropic.com**
+2. In `app/api/analyze/route.js`, swap the Gemini fetch for the Anthropic SDK call
+3. Change the model to `claude-sonnet-4-20250514`
+4. The frontend (`FitCheckAI.jsx`) needs zero changes
 
 ---
 
-## 📄 License
-
-MIT — use it, fork it, improve it.
+*Built with Next.js 14 · Powered by Google Gemini 1.5 Flash (Free Tier)*
