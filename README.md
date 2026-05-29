@@ -1,4 +1,4 @@
-# FitCheck AI — Gemini Edition Setup Guide
+# FitCheck AI — Setup Guide
 ### 100% Free to Run · No Credit Card Required
 
 ---
